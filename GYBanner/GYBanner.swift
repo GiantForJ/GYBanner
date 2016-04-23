@@ -44,8 +44,9 @@ class GYBanner: UIView {
     
     - returns: UIView
     */
-    func initWithFrame(frame:CGRect, imageHandle:(index:Int) -> ()) -> UIView{
+     func initWithFrame(frame:CGRect, imageHandle:(index:Int) -> ()) -> GYBanner{
         
+        let viewBgd:GYBanner = GYBanner(frame: frame)
         //记录
         _size = frame.size
         _currIndex = 0
@@ -59,13 +60,13 @@ class GYBanner: UIView {
         
         _sv.showsHorizontalScrollIndicator = false
         _sv.delegate = self
-        _sv.userInteractionEnabled = true
-        _sv.scrollEnabled = true
+        
+       
         
         // 三屏循环滚动
-        _sv.contentSize = CGSize(width: _size.width * 3 + 200, height: _size.height + 200)
+        _sv.contentSize = CGSize(width: _size.width * 3, height: _size.height )
         
-        addSubview(_sv)
+        viewBgd.addSubview(_sv)
         
         //添加手势
         let tap = UITapGestureRecognizer(target: self, action: "tapHandle")
@@ -79,15 +80,15 @@ class GYBanner: UIView {
         
         _titleLbl.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         
-        addSubview(_titleLbl)
+        viewBgd.addSubview(_titleLbl)
         
         //实例化PageControl
         _pgCtrl = UIPageControl(frame: CGRect(x: CGRectGetMaxX(_sv.frame) - 100, y: _size.height - 30, width: 80, height: 30))
         _pgCtrl.enabled = false
         
-        addSubview(_pgCtrl)
+        viewBgd.addSubview(_pgCtrl)
         
-        return self;
+        return viewBgd;
         
     }
     
@@ -263,7 +264,7 @@ extension GYBanner:UIScrollViewDelegate {
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        _timer.invalidate()
+//        _timer.invalidate() 
     }
     
 }
