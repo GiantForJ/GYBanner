@@ -17,11 +17,11 @@ class ViewController: UIViewController {
         
         let banner = GYBanner()
         let bannerView =  banner.initWithFrame(CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 200)) { (index) -> () in
-            print(index)
+            //            print(index)
             let alertView = UIAlertView(title: String(index), message: "🐷", delegate: nil, cancelButtonTitle: "取消")
             
             alertView.show()
-//            view.addSubview(alertView)
+            
             
             
         }
